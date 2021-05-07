@@ -7,7 +7,9 @@ route.get('/',(req,res,next)=>{
 })
 route.post('/',(req,res,next)=>{
     todoArray.push(
-        {task:req.body.task}
+        {task:req.body.task
+         
+        }
     )
     res.send(todoArray)
 })
