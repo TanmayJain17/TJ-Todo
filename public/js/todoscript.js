@@ -10,13 +10,16 @@ $(document).ready(
         
         
 
-        
+        let flags = 0
 
         btnAdd.click(
             function() {
+                if(flags==0){
+                
                 ulList.empty()
                 let newTodo = inptTask.val()
                 console.log(newTodo)
+
 
                 $.post('/todos',{task:newTodo},(data)=>{
                     for(let i=0;i<data.length;i++){
@@ -59,23 +62,25 @@ $(document).ready(
                         })
                     })
                 })
-                
-
+                }
             })
 
             
                 
              
             
-            let flag=1
+            var flag=1
             
         btnDelete.click(function(){
             if(flag==1){
                 
                 flag=0
-            
-                let doneDel = $('<input/>').attr({id:'btnDoneDel',type:'button'}).attr('value','✔️')
-                btnDelete.after(doneDel)
+                flags=1
+                {
+                    let doneDel = $('<input/>').attr({id:'btnDoneDel',type:'button'}).attr('value','✔️')
+                    btnDelete.after(doneDel)
+                }
+                
 
              
                 $(".lis").each(function(index) {
@@ -99,6 +104,7 @@ $(document).ready(
 
                 $('#btnDoneDel').click(function(){
                     flag=1;
+                    flags = 0;
                     $('.xBtn').remove()
                     $('#btnDoneDel').remove()
                     x=1;
